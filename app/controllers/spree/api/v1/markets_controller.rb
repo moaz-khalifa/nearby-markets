@@ -3,7 +3,7 @@ module Spree
     module V1
 			class MarketsController < Spree::Api::BaseController
 				def index
-					ip = Rails.env.production? request.remote_ip ? : Net::HTTP.get(URI.parse('http://checkip.amazonaws.com/')).squish
+					ip = Rails.env.production? ? request.remote_ip : Net::HTTP.get(URI.parse('http://checkip.amazonaws.com/')).squish
 					coordinates = Geocoder.coordinates(ip)
 					dist = 5000
 					type = 'grocery_or_supermarket'
