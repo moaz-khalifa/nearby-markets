@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_07_202913) do
+ActiveRecord::Schema.define(version: 2020_04_08_222100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -228,6 +228,16 @@ ActiveRecord::Schema.define(version: 2020_04_07_202913) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["source_id", "source_type"], name: "index_spree_log_entries_on_source_id_and_source_type"
+  end
+
+  create_table "spree_markets", force: :cascade do |t|
+    t.string "name"
+    t.text "address"
+    t.decimal "latitude"
+    t.decimal "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["latitude", "longitude"], name: "index_spree_markets_on_latitude_and_longitude"
   end
 
   create_table "spree_oauth_access_grants", force: :cascade do |t|
